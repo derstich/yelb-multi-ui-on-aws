@@ -2,9 +2,7 @@
 Yelb UI running on AWS EC2 Instances + Extra EC2 Instance creating votes randomly
 
 # Based on the content 
-from mreferre (https://github.com/mreferre/yelb)
-and
-from Alex Goller (https://github.com/alexgoller/illumio-yelb)
+from mreferre (https://github.com/mreferre/yelb) and Alex Goller (https://github.com/alexgoller/illumio-yelb)
 
 # Yelb on AWS – Multi UI behind ALB (Terraform)
 
