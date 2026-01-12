@@ -1,0 +1,42 @@
+#cloud-config
+package_update: true
+packages:
+  - curl
+write_files:
+  - path: /usr/local/bin/yelb-voter.sh
+    permissions: '0755'
+    owner: root:root
+    content: |
+      #!/bin/bash
+      set -euo pipefail
+      ALB_URL="${alb_url}"
+      INTERVAL=${interval}
+      RESTAURANTS=("outback" "bucadibeppo" "chipotle" "ihop")
+      LEN=4
+      while true; do
+        idx=$(( RANDOM % LEN ))
+        choice=$${RESTAURANTS[$idx]}
+        curl -s "$${ALB_URL}/api/$${choice}" || true
+        curl -s "$${ALB_URL}/api/getvotes" || true
+        curl -s "$${ALB_URL}/" || true
+        sleep $${INTERVAL}
+      done
+  - path: /etc/systemd/system/yelb-voter.service
+    permissions: '0644'
+    owner: root:root
+    content: |
+      [Unit]
+      Description=Yelb random voter
+      After=network-online.target
+      [Service]
+      Type=simple
+      ExecStart=/usr/local/bin/yelb-voter.sh
+      Restart=always
+      RestartSec=5
+      [Install]
+      WantedBy=multi-user.target
+runcmd:
+  - [ systemctl, unmask, yelb-voter ]
+  - [ systemctl, daemon-reload ]
+  - [ systemctl, enable, yelb-voter ]
+  - [ systemctl, start, yelb-voter ]
