@@ -1,6 +1,11 @@
 # yelb-multi-ui-on-aws
 Yelb UI running on AWS EC2 Instances + Extra EC2 Instance creating votes randomly
 
+# Based on the content 
+from mreferre (https://github.com/mreferre/yelb)
+and
+from Alex Goller (https://github.com/alexgoller/illumio-yelb)
+
 # Yelb on AWS – Multi UI behind ALB (Terraform)
 
 This repository deploys the **Yelb** demo application on **AWS EC2** using Terraform:
@@ -10,7 +15,7 @@ This repository deploys the **Yelb** demo application on **AWS EC2** using Terra
 - Appserver, Redis, and Postgres DB each as EC2 instances running Docker containers
 
 ## Prerequisites
-- **Terraform** >= 1.3 (tested with 1.14.0)
+- **Terraform** >= 1.5 (tested with 1.14.0)
 - **AWS provider** >= 5.x (tested with 6.28.0)
 - AWS account and valid **credentials** (e.g., via `aws configure`, `AWS_PROFILE`, `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY`)
 
